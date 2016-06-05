@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -84,15 +84,25 @@
 
 
 
-<meta name="description" content="给我一块砖，我能一砖拍死pm">
-<meta property="og:type" content="website">
-<meta property="og:title" content="香料的搬砖生涯">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="AsyncSocket的使用
+iOS原生的socket有点麻烦，可以使用第三方库AsyncSocket来实现socket通信
+引入CFNetwork.framework
+定义一个枚举区别断开链接类型1234typedef NS_ENUM(NSUInteger, SokectDisconnectType) &amp;#123;    SokectDisconnectTypeServer = 0,    So">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AsyncSocket的使用">
+<meta property="og:url" content="http://yoursite.com/2016/06/05/AsyncSocket的使用/index.html">
 <meta property="og:site_name" content="香料的搬砖生涯">
-<meta property="og:description" content="给我一块砖，我能一砖拍死pm">
+<meta property="og:description" content="AsyncSocket的使用
+iOS原生的socket有点麻烦，可以使用第三方库AsyncSocket来实现socket通信
+引入CFNetwork.framework
+定义一个枚举区别断开链接类型1234typedef NS_ENUM(NSUInteger, SokectDisconnectType) &amp;#123;    SokectDisconnectTypeServer = 0,    So">
+<meta property="og:updated_time" content="2016-06-05T09:24:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="香料的搬砖生涯">
-<meta name="twitter:description" content="给我一块砖，我能一砖拍死pm">
+<meta name="twitter:title" content="AsyncSocket的使用">
+<meta name="twitter:description" content="AsyncSocket的使用
+iOS原生的socket有点麻烦，可以使用第三方库AsyncSocket来实现socket通信
+引入CFNetwork.framework
+定义一个枚举区别断开链接类型1234typedef NS_ENUM(NSUInteger, SokectDisconnectType) &amp;#123;    SokectDisconnectTypeServer = 0,    So">
 
 
 
@@ -110,7 +120,7 @@
   };
 </script>
 
-  <title> 香料的搬砖生涯 </title>
+  <title> AsyncSocket的使用 | 香料的搬砖生涯 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +141,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,9 +228,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -242,10 +250,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/06/05/AsyncSocket的使用/" itemprop="url">
-                  AsyncSocket的使用
-                </a>
+                AsyncSocket的使用
               
             
           </h1>
@@ -285,9 +290,7 @@
       
 
       
-        
-          
-            <h2 id="AsyncSocket的使用"><a href="#AsyncSocket的使用" class="headerlink" title="AsyncSocket的使用"></a>AsyncSocket的使用</h2><blockquote>
+        <h2 id="AsyncSocket的使用"><a href="#AsyncSocket的使用" class="headerlink" title="AsyncSocket的使用"></a>AsyncSocket的使用</h2><blockquote>
 <p>iOS原生的socket有点麻烦，可以使用第三方库AsyncSocket来实现socket通信</p>
 <h5 id="引入CFNetwork-framework"><a href="#引入CFNetwork-framework" class="headerlink" title="引入CFNetwork.framework"></a>引入CFNetwork.framework</h5></blockquote>
 <h4 id="定义一个枚举区别断开链接类型"><a href="#定义一个枚举区别断开链接类型" class="headerlink" title="定义一个枚举区别断开链接类型"></a>定义一个枚举区别断开链接类型</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, SokectDisconnectType) &#123;</span><br><span class="line">    SokectDisconnectTypeServer = <span class="number">0</span>,</span><br><span class="line">    SokectDisconnectTypeClient = <span class="number">1</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -311,251 +314,58 @@
 <h5 id="连接成功后可以定义心跳"><a href="#连接成功后可以定义心跳" class="headerlink" title="连接成功后可以定义心跳"></a>连接成功后可以定义心跳</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//连接成功，准备读写</span></span><br><span class="line">- (<span class="keyword">void</span>)onSocket:(AsyncSocket *)sock didConnectToHost:(<span class="built_in">NSString</span> *)host port:(<span class="built_in">UInt16</span>)port&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"didConnectToHost"</span>);</span><br><span class="line">    <span class="comment">//先调用一次，否则didReadData不响应,若timeout为负，则一直连接</span></span><br><span class="line">    [<span class="keyword">self</span>.socket readDataWithTimeout:<span class="number">-1</span> tag:<span class="number">0</span>];</span><br><span class="line">    <span class="comment">//可在此发送心跳包</span></span><br><span class="line">    <span class="keyword">self</span>.heartbeatTimer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">30</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(heartbeatToSocketData) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];<span class="comment">// heartbeatToSocketData中发送包</span></span><br><span class="line">    [<span class="keyword">self</span>.heartbeatTimer fire];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h5 id="发送心跳包"><a href="#发送心跳包" class="headerlink" title="发送心跳包"></a>发送心跳包</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)heartbeatToSocketData&#123;</span><br><span class="line">    <span class="comment">//设置心跳识别指令，一般没有那么简单</span></span><br><span class="line">    <span class="built_in">NSString</span> *heartbeatID = <span class="string">@"heartbeatID"</span>;</span><br><span class="line">    <span class="built_in">NSData</span> *dataStream = [heartbeatID dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">    [<span class="keyword">self</span>.socket writeData:dataStream withTimeout:<span class="number">1</span> tag:<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/31/f/" itemprop="url">
-                  测试代码块
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-31T10:50:51+08:00" content="2016-05-31">
-              2016-05-31
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="一块代码"><a href="#一块代码" class="headerlink" title="一块代码"></a>一块代码</h3><p><img src="http://25.io/mou/Mou_128.png" alt="Mou icon"></p>
-<blockquote><p>引用网络上的文章</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html">Welcome to Island Marketing</a></cite></footer></blockquote>
-<p>//<br><blockquote><p>引用书上的句子</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote></p>
-<p>//</p>
-<blockquote><p>一块代码</p>
-<footer><strong>[author[</strong><cite>source]] [link] [source_link_title]</cite></footer></blockquote>
-<p>//</p>
-<figure class="highlight bash"><figcaption><span>test</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一块代码</span><br></pre></td></tr></table></figure>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)rearrangeSegmentsAnimated:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    <span class="built_in">CGFloat</span> width = <span class="built_in">CGRectGetWidth</span>(<span class="keyword">self</span>.bounds);</span><br><span class="line">    <span class="built_in">CGFloat</span> height = <span class="built_in">CGRectGetHeight</span>(<span class="keyword">self</span>.bounds);</span><br><span class="line">    <span class="built_in">CGFloat</span> segemtedWidth = width/<span class="keyword">self</span>.numberOfSegments;</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">CGRect</span> selectionIndicatorRect = <span class="built_in">CGRectMake</span>(<span class="keyword">self</span>.selectedSegmentIndex*segemtedWidth, height - kSelectionIndicatorHeight, segemtedWidth, kSelectionIndicatorHeight);</span><br><span class="line">    <span class="keyword">self</span>.scrollView.contentSize = <span class="built_in">CGSizeMake</span>(width, height);</span><br><span class="line">    <span class="keyword">void</span>(^selectionIndicatorAnimations)() = ^&#123;</span><br><span class="line">        <span class="keyword">self</span>.selectionIndicator.frame = selectionIndicatorRect;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">void</span>(^animations)() = ^&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="keyword">self</span>.scrollView.subviews.count;i++) &#123;</span><br><span class="line">            <span class="built_in">UIView</span> *view = <span class="keyword">self</span>.scrollView.subviews[i];</span><br><span class="line">            [view setFrame:<span class="built_in">CGRectMake</span>(segemtedWidth*i, height - kSelectionIndicatorHeight, segemtedWidth, kSelectionIndicatorHeight)];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">if</span> (animated) &#123;</span><br><span class="line">        [<span class="built_in">UIView</span> animateWithDuration:kAnimationDuration animations:selectionIndicatorAnimations];</span><br><span class="line">        [<span class="built_in">UIView</span> animateWithDuration:kAnimationDuration animations:animations completion:<span class="literal">nil</span>];</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        selectionIndicatorAnimations();</span><br><span class="line">        animations();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.map(callback[, thisArg])</span><br></pre></td></tr></table></figure>
-<h4 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h4><ul>
-<li>Copy HTML: Option + Cmd + C</li>
-<li>Strong: Select text, Cmd + B</li>
-<li>Emphasize: Select text, Cmd + I</li>
-<li>Inline Code: Select text, Cmd + K</li>
-<li>Strikethrough: Select text, Cmd + U</li>
-<li>Link: Select text, Control + Shift + L</li>
-<li>Image: Select text, Control + Shift + I</li>
-<li>Select Word: Control + Option + W</li>
-<li>Select Line: Shift + Cmd + L</li>
-<li>Select All: Cmd + A</li>
-<li>Deselect All: Cmd + D</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/31/f/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/31/f/" rel="next" title="测试代码块">
+                <i class="fa fa-chevron-left"></i> 测试代码块
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/31/hello-world/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-31T09:42:42+08:00" content="2016-05-31">
-              2016-05-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>title: 第一篇，还在熟悉hexo date: 2016-05-030 categories: 生活 tags: 闲聊 description: 文章分类</p>
-<h2 id="categories"><a href="#categories" class="headerlink" title="categories:"></a>categories:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">生活，技术，摄影</span><br></pre></td></tr></table></figure>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ios android web</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -563,6 +373,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -582,8 +396,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -626,6 +449,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncSocket的使用"><span class="nav-number">1.</span> <span class="nav-text">AsyncSocket的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引入CFNetwork-framework"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">引入CFNetwork.framework</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义一个枚举区别断开链接类型"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义一个枚举区别断开链接类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个AsyncSocket，ip以及Port变量"><span class="nav-number">1.0.2.</span> <span class="nav-text">创建一个AsyncSocket，ip以及Port变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化AsyncSocket"><span class="nav-number">1.0.3.</span> <span class="nav-text">初始化AsyncSocket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代理-AsyncSocketDelegate"><span class="nav-number">1.0.4.</span> <span class="nav-text">实现代理 AsyncSocketDelegate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#心跳检测"><span class="nav-number">1.0.5.</span> <span class="nav-text">心跳检测</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#心跳检测步骤："><span class="nav-number">1.0.5.1.</span> <span class="nav-text">心跳检测步骤：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义心跳计时器"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">定义心跳计时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接成功后可以定义心跳"><span class="nav-number">1.0.5.3.</span> <span class="nav-text">连接成功后可以定义心跳</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发送心跳包"><span class="nav-number">1.0.5.4.</span> <span class="nav-text">发送心跳包</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -722,6 +556,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
